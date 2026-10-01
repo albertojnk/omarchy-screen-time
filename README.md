@@ -45,11 +45,11 @@ Every `pollIntervalSec` seconds (default 5) the tracker checks:
 - **Watching** — the focused window belongs to a service: its title contains
   "- YouTube" / "YouTube Music", "- Twitch", "Netflix -" / "- Netflix", or
   "Instagram", or its app id contains the service name (PWAs).
-- **Listening** (YouTube and Twitch only) — a browser's MPRIS player is playing
+- **Listening** (YouTube, Twitch and Netflix) — a browser's MPRIS player is playing
   and can be tied to a service window: the window title starts with the track
   title, or the same browser was tied earlier and is still playing (tab
   switched away, autoplay). With `looseMatch` on, browser audio also counts
-  whenever a YouTube or Twitch window is open even if the tab cannot be
+  whenever a YouTube, Twitch or Netflix window is open even if the tab cannot be
   confirmed.
 
 Only one service is counted per check: the focused window wins, otherwise the

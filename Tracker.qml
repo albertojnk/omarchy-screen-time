@@ -50,12 +50,14 @@ Item {
   // window titles (Chrome: "<page> - Netflix - Google Chrome", Firefox:
   // "<page> — Mozilla Firefox"), `appId` needles inside the app id (PWAs).
   // `audio` says whether the service plays through the browser's MPRIS player,
-  // which is what lets a background tab count as "listening".
+  // which is what lets a background tab or an unfocused window count as
+  // "listening" (Chrome exposes a media session for YouTube, Twitch and
+  // Netflix; Netflix reports "Netflix" as the track title).
 
   readonly property var catalog: [
     { id: "youtube",   name: "YouTube",   glyph: "󰗃", title: ["- youtube", "youtube music", "youtube -", "youtube —"], appId: ["youtube"],   audio: true,  limitKey: "limitYoutubeMin",   trackKey: "trackYoutube" },
     { id: "twitch",    name: "Twitch",    glyph: "󰕈", title: ["- twitch", "twitch -", "twitch —"],                    appId: ["twitch"],    audio: true,  limitKey: "limitTwitchMin",    trackKey: "trackTwitch" },
-    { id: "netflix",   name: "Netflix",   glyph: "󰝆", title: ["- netflix", "netflix -", "netflix —"],                 appId: ["netflix"],   audio: false, limitKey: "limitNetflixMin",   trackKey: "trackNetflix" },
+    { id: "netflix",   name: "Netflix",   glyph: "󰝆", title: ["- netflix", "netflix -", "netflix —"],                 appId: ["netflix"],   audio: true,  limitKey: "limitNetflixMin",   trackKey: "trackNetflix" },
     { id: "instagram", name: "Instagram", glyph: "󰋾", title: ["instagram"],                                           appId: ["instagram"], audio: false, limitKey: "limitInstagramMin", trackKey: "trackInstagram" }
   ]
 
@@ -265,6 +267,10 @@ Item {
         var matchedService = null
         for (var k = 0; k < windows.length; k++)
           if (windows[k].service.audio && windows[k].title.toLowerCase().indexOf(trackLower) === 0) { matchedService = windows[k].service; break }
+        // The track itself can name the service ("Netflix"); that ties the
+        // player even when the window title carries an episode name instead.
+        for (var a = 0; a < services.length && !matchedService; a++)
+          if (containsAny(trackLower, services[a].appId)) matchedService = services[a]
         var elsewhere = false
         for (var o = 0; o < otherTitles.length && !matchedService; o++)
           if (otherTitles[o].toLowerCase().indexOf(trackLower) === 0) { elsewhere = true; break }
