@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.albertojnk.screen-time",
+  "name": "Screen Time",
+  "version": "2.0.0",
+  "author": "albertojnk",
+  "license": "MIT",
+  "description": "Tracks how long you spend on YouTube, Twitch, Netflix and Instagram each day, with a 7-day history and daily limits.",
+  "kinds": ["bar-widget"],
+  "activation": "on-demand",
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Screen Time",
+    "description": "Minutes of YouTube, Twitch, Netflix and Instagram today in the bar, a panel per service with the last 7 days, and notifications when you hit a daily limit.",
+    "category": "Info",
+    "aliases": ["screen-time", "youtube-time", "media-time"],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "dailyLimitMin": 0,
+      "limitYoutubeMin": 60,
+      "limitTwitchMin": 60,
+      "limitNetflixMin": 60,
+      "limitInstagramMin": 60,
+      "trackYoutube": "On",
+      "trackTwitch": "On",
+      "trackNetflix": "On",
+      "trackInstagram": "On",
+      "warnBeforeMin": 10,
+      "repeatEveryMin": 15,
+      "pollIntervalSec": 5,
+      "looseMatch": "On",
+      "showMinutesInBar": "On",
+      "language": "System"
+    },
+    "schema": [
+      { "key": "dailyLimitMin", "type": "integer", "label": "Total daily limit (minutes)", "min": 0, "max": 1440, "step": 5, "defaultValue": 0, "description": "Limit for all services combined. 0 disables." },
+      { "key": "limitYoutubeMin", "type": "integer", "label": "YouTube limit (minutes)", "min": 0, "max": 1440, "step": 5, "defaultValue": 60, "description": "0 disables." },
+      { "key": "limitTwitchMin", "type": "integer", "label": "Twitch limit (minutes)", "min": 0, "max": 1440, "step": 5, "defaultValue": 60, "description": "0 disables." },
+      { "key": "limitNetflixMin", "type": "integer", "label": "Netflix limit (minutes)", "min": 0, "max": 1440, "step": 5, "defaultValue": 60, "description": "0 disables." },
+      { "key": "limitInstagramMin", "type": "integer", "label": "Instagram limit (minutes)", "min": 0, "max": 1440, "step": 5, "defaultValue": 60, "description": "0 disables." },
+      { "key": "trackYoutube", "type": "enum", "label": "Track YouTube", "options": ["On", "Off"], "defaultValue": "On" },
+      { "key": "trackTwitch", "type": "enum", "label": "Track Twitch", "options": ["On", "Off"], "defaultValue": "On" },
+      { "key": "trackNetflix", "type": "enum", "label": "Track Netflix", "options": ["On", "Off"], "defaultValue": "On" },
+      { "key": "trackInstagram", "type": "enum", "label": "Track Instagram", "options": ["On", "Off"], "defaultValue": "On" },
+      { "key": "warnBeforeMin", "type": "integer", "label": "Warn before a limit (minutes)", "min": 0, "max": 120, "step": 1, "defaultValue": 10, "description": "Heads-up this many minutes before any limit. 0 disables." },
+      { "key": "repeatEveryMin", "type": "integer", "label": "Repeat after a limit (minutes)", "min": 0, "max": 240, "step": 5, "defaultValue": 15, "description": "Keep reminding every N minutes while over a limit. 0 notifies once." },
+      { "key": "pollIntervalSec", "type": "integer", "label": "Poll interval (seconds)", "min": 1, "max": 60, "step": 1, "defaultValue": 5 },
+      { "key": "looseMatch", "type": "enum", "label": "Count background browser audio", "options": ["On", "Off"], "defaultValue": "On", "description": "When On, a browser already tied to a service keeps counting through autoplay, and browser audio counts whenever a window of an audio service is open even if the playing tab cannot be confirmed." },
+      { "key": "showMinutesInBar", "type": "enum", "label": "Show minutes in bar", "options": ["On", "Off"], "defaultValue": "On" },
+      { "key": "language", "type": "enum", "label": "Language", "options": ["System", "en", "pt", "es"], "defaultValue": "System", "description": "System follows the shell's locale (LANG); en, pt or es force the texts and weekday names." }
+    ]
+  }
+}
