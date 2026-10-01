@@ -104,7 +104,7 @@ in Setup > Plugins.
 | `limitInstagramMin` | `60` | Instagram limit. `0` disables |
 | `trackYoutube` … `trackInstagram` | `"On"` | Turn a service off to stop counting it and hide its tab |
 | `warnBeforeMin` | `10` | Heads-up this many minutes before any limit. `0` disables |
-| `repeatEveryMin` | `15` | Re-notify every N minutes while over a limit. `0` = once |
+| `repeatEveryMin` | `0` | Notify once per day when a limit is reached. Set N to re-notify every N minutes while over it |
 | `pollIntervalSec` | `5` | How often to check |
 | `looseMatch` | `"On"` | Count background browser audio (see above) |
 | `showMinutesInBar` | `"On"` | Show today's total minutes next to the bar glyph |

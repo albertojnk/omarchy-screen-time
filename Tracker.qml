@@ -91,7 +91,7 @@ Item {
 
   readonly property int pollSec: clampInt(setting("pollIntervalSec", 5), 1, 60, 5)
   readonly property int warnBeforeMin: clampInt(setting("warnBeforeMin", 10), 0, 120, 10)
-  readonly property int repeatEveryMin: clampInt(setting("repeatEveryMin", 15), 0, 240, 15)
+  readonly property int repeatEveryMin: clampInt(setting("repeatEveryMin", 0), 0, 240, 0)
   readonly property bool looseMatch: isOn("looseMatch", "On")
 
   // ---------------------------------------------------------------- state
